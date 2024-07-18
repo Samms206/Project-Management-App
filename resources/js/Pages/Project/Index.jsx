@@ -7,7 +7,6 @@ import { Head, Link, router } from "@inertiajs/react";
 import TableHeading from "@/Components/TableHeading";
 
 export default function Index({ auth, projects, queryParams = null }) {
-
     queryParams = queryParams || {}
     const searchFieldChanged = (name, value) => {
         if (value) {
@@ -108,7 +107,9 @@ export default function Index({ auth, projects, queryParams = null }) {
                                             <td className="px-3 py-2">
                                                 <img width={100} src={project.image_path} alt="" />
                                             </td>
-                                            <td className="px-3 py-2">{project.name}</td>
+                                            <th className="px-3 py-2 hover:underline">
+                                                <Link href={route('project.show', project.id)}>{project.name}</Link>
+                                            </th>
                                             <td className="px-3 py-2 text-center text-nowrap">
                                                 <span className={"px-2 py-1 rounded text-white " + PROJECT_STATUS_CLASS_MAP[project.status]}>
                                                     {PROJECT_STATUS_TEXT_MAP[project.status]}
@@ -127,7 +128,6 @@ export default function Index({ auth, projects, queryParams = null }) {
                             </table>
                         </div>
                         <Pagination links={projects.meta.links} />
-                        {/* {console.log(projects.meta.links)} */}
                     </div>
                 </div>
             </div>
