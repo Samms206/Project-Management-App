@@ -5,9 +5,20 @@ import { PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP } from "@/constants.j
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
 import TableHeading from "@/Components/TableHeading";
+import { useEffect } from "react";
 
 export default function Index({ auth, projects, queryParams = null, success }) {
     queryParams = queryParams || {}
+
+    useEffect(() => {
+        if (success) {
+            const timer = setTimeout(() => {
+                router.get(route('project.index'), queryParams);
+            }, 2000);
+            return () => clearTimeout(timer); 
+        }
+    }, [success, queryParams]);
+
     const searchFieldChanged = (name, value) => {
         if (value) {
             queryParams[name] = value
