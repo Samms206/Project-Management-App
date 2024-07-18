@@ -5,7 +5,7 @@ import SelectInput from "@/Components/SelectInput";
 import TextInput from "@/Components/TextInput";
 import { TASK_STATUS_CLASS_MAP, TASK_STATUS_TEXT_MAP } from "@/constants.jsx";
 
-export default function TasksTable({tasks, queryParams = null}) {
+export default function TasksTable({tasks, queryParams = null, hideProjectColumn = false}) {
 
     const searchFieldChanged = (name, value) => {
         if (value) {
@@ -70,12 +70,13 @@ export default function TasksTable({tasks, queryParams = null}) {
                                     ID
                                 </TableHeading>
                                 <th className="px-3 py-2">Image</th>
+                                {!hideProjectColumn &&(<th className="px-3 py-2">Project Name</th>)}
                                 <TableHeading
                                     name="name"
                                     sort_field={queryParams.sort_field}
                                     sort_direction={queryParams.sort_direction}
                                     sortChanged={sortChanged}>
-                                    Name
+                                    Task Name
                                 </TableHeading>
                                 <th className="px-3 py-2 text-center">Status</th>
                                 <TableHeading
@@ -103,6 +104,7 @@ export default function TasksTable({tasks, queryParams = null}) {
                                     <td className="px-3 py-2">
                                         <img width={100} src={task.image_path} alt="" />
                                     </td>
+                                    {!hideProjectColumn &&(<td className="px-3 py-2">{task.project.name}</td>)}
                                     <td className="px-3 py-2">{task.name}</td>
                                     <td className="px-3 py-2 text-center text-nowrap">
                                         <span className={"px-2 py-1 rounded text-white " + TASK_STATUS_CLASS_MAP[task.status]}>
