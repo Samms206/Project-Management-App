@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ProjectResource extends JsonResource
 {
+    public static $wrap = false;//menghapus data:[] di json
     /**
      * Transform the resource into an array.
      *

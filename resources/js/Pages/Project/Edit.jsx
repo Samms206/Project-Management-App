@@ -10,23 +10,23 @@ export default function Create({ auth, project }) {
 
     const { data, setData, post, errors, reset } = useForm({
         image: '',
-        name: project.data.name || '',
-        status: project.data.status || '',
-        description: project.data.description || '',
-        due_date: project.data.due_date || '',
+        name: project.name || '',
+        status: project.status || '',
+        description: project.description || '',
+        due_date: project.due_date || '',
         _method: 'PUT'
     });
 
     const onSubmit = (e) => {
         e.preventDefault();
-        post(route('project.update', project.data.id));
+        post(route('project.update', project.id));
     }
 
     return (
         <Authenticated user={auth.user}
             header={
                 <div className="flex justify-between items-center">
-                    <h2 className="font-semibold text-xl text-gray-800 leading-tight">Edit Project {project.name}</h2>
+                    <h2 className="font-semibold text-xl text-gray-800 leading-tight">Edit Project "{project.name}"</h2>
                 </div>
             }>
             <Head title="Projects" />
@@ -35,9 +35,9 @@ export default function Create({ auth, project }) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
                             <form className="p-4 sm:p-8 bg-white shadow sm:rounded-lg" onSubmit={onSubmit}>
-                                {project.data.image_path && (
+                                {project.image_path && (
                                     <div>
-                                        <img src={project.data.image_path} alt="image" className="w-64" />
+                                        <img src={project.image_path} alt="image" className="w-64" />
                                     </div>
                                 )}
                                 <div className="mt-4">

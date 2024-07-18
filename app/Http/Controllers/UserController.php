@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\UserCrudResource;
 use App\Models\User;
 
 class UserController extends Controller
@@ -13,7 +14,24 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $query = User::query();
+
+        $sortFields = request("sort_field", 'created_at');
+        $sortDirection = request("sort_direction", 'desc');
+
+        if (request("name")) {
+            $query->where("name", "like", "%" . request("name") . "%");
+        }
+
+        $users = $query->orderBy($sortFields, $sortDirection)
+            ->paginate(10)
+            ->onEachSide(1);
+
+        return inertia("User/Index", [
+            "users" => UserCrudResource::collection($users),
+            "queryParams" => request()->query() ?: null,
+            "success" => session('success'),
+        ]);
     }
 
     /**
@@ -21,7 +39,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return inertia("User/Create");
     }
 
     /**
@@ -29,7 +47,12 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['email_verified_at'] = time();
+        $data['password'] = bcrypt($data['password']);
+        User::create($data);
+
+        return to_route('user.index')->with('success', 'User created successfully');
     }
 
     /**
@@ -37,7 +60,6 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
     }
 
     /**
@@ -45,7 +67,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return inertia("User/Edit", [
+            'user' => new UserCrudResource($user),
+        ]);
     }
 
     /**
@@ -53,7 +77,17 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $data = $request->validated();
+        $data['email_verified_at'] = time();
+        $password = $data['password'] ?? null;
+        if($password){
+            $data['password'] = bcrypt($data['password']);
+        }else{
+            unset($data['password']);
+        }
+        $user->update($data);
+
+        return to_route('user.index')->with('success', 'User was updated!');
     }
 
     /**
