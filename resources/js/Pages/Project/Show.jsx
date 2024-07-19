@@ -3,7 +3,7 @@ import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import TasksTable from "../Task/TasksTable";
 
-export default function Show({ auth, project, tasks, queryParams = null }) {
+export default function Show({ auth, project, tasks, queryParams = null, success }) {
     queryParams = queryParams || {}
 
     return (
@@ -69,7 +69,11 @@ export default function Show({ auth, project, tasks, queryParams = null }) {
             <div className="py-6">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg"></div>
-                    <TasksTable tasks={tasks} queryParams={queryParams} hideProjectColumn={true}/>
+                    <TasksTable
+                        tasks={tasks}
+                        queryParams={queryParams}
+                        hideProjectColumn={true}
+                        success={success} />
                 </div>
             </div>
 
