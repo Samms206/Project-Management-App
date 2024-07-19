@@ -23,13 +23,13 @@ export const TASK_STATUS_TEXT_MAP = {
 }
 
 export const TASK_PRIORITY_STATUS_CLASS_MAP ={
-    'pending': 'bg-gray-600',
-    'in_progress': 'bg-amber-600',
-    'completed': 'bg-red-600',
+    'low': 'bg-gray-600',
+    'medium': 'bg-amber-600',
+    'high': 'bg-red-600',
 }
 
 export const TASK_PRIORITY_STATUS_TEXT_MAP = {
-    'pending': 'Low',
-    'in_progress' : 'Medium',
-    'completed':'High'
+    'low': 'Low',
+    'medium' : 'Medium',
+    'high':'High'
 }
