@@ -91,6 +91,7 @@ export default function Create({ auth, project }) {
                                     <SelectInput
                                         name="status"
                                         id="project_status"
+                                        value={data.status}
                                         onChange={(e) => setData('status', e.target.value)}
                                         className="mt-1 block w-full"
                                         label="Status"
