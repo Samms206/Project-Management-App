@@ -97,11 +97,11 @@ export default function Create({ auth }) {
                                     <InputError message={errors.status} className="mt-2" />
                                 </div>
                                 <div className="mt-4">
-                                <InputLabel
+                                    <InputLabel
                                         htmlFor="project_due_date"
                                         value="Project Deadline"
                                     />
-                                     <TextInput
+                                    <TextInput
                                         id="project_due_date"
                                         type="date"
                                         name="due_date"

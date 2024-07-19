@@ -15,7 +15,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
             const timer = setTimeout(() => {
                 router.get(route('project.index'), queryParams);
             }, 2000);
-            return () => clearTimeout(timer); 
+            return () => clearTimeout(timer);
         }
     }, [success, queryParams]);
 
@@ -87,9 +87,11 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                             <option value="completed">Completed</option>
                         </SelectInput>
                     </div>
-                    {success && (<div className="bg-emerald-500 py-2 px-4 mb-4 text-white rounded">
-                        {success}
-                    </div>)}
+                    {success && (
+                        <div className="bg-emerald-500 py-2 px-4 mb-4 text-white rounded">
+                            {success}
+                        </div>
+                    )}
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="overflow-auto">
                             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -149,9 +151,9 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                             <td className="px-3 py-2">{project.created_by.name}</td>
                                             <td className="px-3 py-2 text-nowrap">
                                                 <Link href={route('project.edit', project.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-1">Edit</Link>
-                                                <button 
-                                                onClick={(e) => deleteProject(project)}
-                                                className="font-medium text-red-600 dark:text-red-500 hover:underline mx-1">Delete</button>
+                                                <button
+                                                    onClick={(e) => deleteProject(project)}
+                                                    className="font-medium text-red-600 dark:text-red-500 hover:underline mx-1">Delete</button>
                                             </td>
                                         </tr>
                                     ))}
