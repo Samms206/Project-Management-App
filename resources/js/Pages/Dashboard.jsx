@@ -19,8 +19,8 @@ export default function Dashboard({
         >
             <Head title="Dashboard" />
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-3 gap-2">
+            <div className="py-12 px-2 md:px-2 sm:px-2 lg:px-1">
+                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 gap-2 grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
                     <div className="bg-white text-amber-600 overflow-hidden shadow-sm sm:rounded-lg flex flex-col p-6">
                         <h3 className="text-xl font-semibold">Pending Tasks</h3>
                         <p>
