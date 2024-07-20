@@ -79,9 +79,9 @@ export default function Index({ auth, users, queryParams = null, success }) {
                         {success}
                     </div>)}
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="overflow-auto">
-                            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
+                        <div className="rounded overflow-auto border border-gray-300 sm:rounded-lg">
+                            <table className="min-w-full bg-white">
+                                <thead className="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-700">
                                     <tr className="text-nowrap">
                                         <TableHeading
                                             name="id"
@@ -116,7 +116,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
                                 </thead>
                                 <tbody>
                                     {users.data.map(user => (
-                                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={user.id}>
+                                        <tr className="py-2 px-4 border-b border-gray-200 text-sm" key={user.id}>
                                             <td className="px-3 py-2">{user.id}</td>
                                             <th className="px-3 py-2 hover:underline">
                                                 {user.name}
