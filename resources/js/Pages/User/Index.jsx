@@ -118,10 +118,10 @@ export default function Index({ auth, users, queryParams = null, success }) {
                                     {users.data.map(user => (
                                         <tr className="py-2 px-4 border-b border-gray-200 text-sm" key={user.id}>
                                             <td className="px-3 py-2">{user.id}</td>
-                                            <th className="px-3 py-2 hover:underline">
+                                            <th className="px-3 py-2 text-left">
                                                 {user.name}
                                             </th>
-                                            <th className="px-3 py-2 hover:underline">
+                                            <th className="px-3 py-2 text-left">
                                                 {user.email}
                                             </th>
                                             <td className="px-3 py-2 text-nowrap">{user.created_at}</td>

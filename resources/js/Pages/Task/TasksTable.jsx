@@ -6,12 +6,19 @@ import TextInput from "@/Components/TextInput";
 import { TASK_STATUS_CLASS_MAP, TASK_STATUS_TEXT_MAP,TASK_PRIORITY_STATUS_CLASS_MAP,TASK_PRIORITY_STATUS_TEXT_MAP } from "@/constants.jsx";
 import { useEffect } from "react";
 
-export default function TasksTable({ tasks, queryParams = null, hideProjectColumn = false, success }) {
+export default function TasksTable({ 
+    tasks, 
+    queryParams = null, 
+    hideProjectColumn = false, 
+    success, 
+    routeTable = 'task.index', 
+    project_id = null 
+}) {
 
     useEffect(() => {
         if (success) {
             const timer = setTimeout(() => {
-                router.get(route('task.index'), queryParams);
+                router.get(route(routeTable, project_id ), queryParams);
             }, 2000);
             return () => clearTimeout(timer);
         }
@@ -24,7 +31,7 @@ export default function TasksTable({ tasks, queryParams = null, hideProjectColum
             delete queryParams[name]
         }
 
-        router.get(route('task.index'), queryParams);
+        router.get(route(routeTable, project_id), queryParams);
     };
 
     const onKeyPress = (name, e) => {
@@ -43,7 +50,7 @@ export default function TasksTable({ tasks, queryParams = null, hideProjectColum
             queryParams.sort_field = name;
             queryParams.sort_direction = 'asc';
         }
-        router.get(route('task.index'), queryParams);
+        router.get(route(routeTable, project_id), queryParams);
     };
 
     const deleteTask = (task) => {

@@ -3,7 +3,7 @@ import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import TasksTable from "../Task/TasksTable";
 
-export default function Show({ auth, project, tasks, queryParams = null, success }) {
+export default function Show({ auth, project, tasks, queryParams = null, success, routeTable, project_id = null }) {
     queryParams = queryParams || {}
 
     return (
@@ -71,10 +71,13 @@ export default function Show({ auth, project, tasks, queryParams = null, success
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg"></div>
                     <TasksTable
+                        preserveScroll
                         tasks={tasks}
                         queryParams={queryParams}
                         hideProjectColumn={true}
-                        success={success} />
+                        success={success}
+                        routeTable={routeTable}
+                        project_id={project_id} />
                 </div>
             </div>
 
